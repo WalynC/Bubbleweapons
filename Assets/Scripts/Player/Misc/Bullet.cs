@@ -6,14 +6,19 @@ public class Bullet : MonoBehaviour
     Queue<GameObject> returnPool;
     float timeDie;
     public float timeLimit = 5.0f;
+    public Rigidbody rb;
+    public float speed = 10.0f;
 
-    public void Init(Queue<GameObject> pool)
+    public void Init(Queue<GameObject> pool, Transform t, Vector3 forward)
     {
         returnPool = pool;
         timeDie = Time.time + timeLimit;
+        rb.MovePosition(t.position);
+        transform.forward = forward;
+        rb.linearVelocity = transform.forward * speed;
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
         Return();
     }

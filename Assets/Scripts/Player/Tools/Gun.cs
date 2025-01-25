@@ -5,13 +5,13 @@ public class Gun : Tool
 {
     public GameObject bullet;
     public Queue<GameObject> pool = new Queue<GameObject>();
+    public FPSController player;
 
     public override void Use()
     {
         GameObject obj = GetFromPool();
         obj.SetActive(true);
-        obj.transform.position = transform.position;
-        obj.GetComponent<Bullet>().Init(pool);
+        obj.GetComponent<Bullet>().Init(pool, transform, player.cam.transform.forward);
     }
 
     GameObject GetFromPool()
