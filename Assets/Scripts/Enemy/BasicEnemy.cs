@@ -16,6 +16,7 @@ public class BasicEnemy : MonoBehaviour
     public float visualDistance = 15f;
     public float fov = 90f;
     public float soundDistance = 3f;
+    public LayerMask sightMask;
 
     //wander
     public float wanderRange = 5f;
@@ -60,8 +61,15 @@ public class BasicEnemy : MonoBehaviour
     bool CanSeePlayer()
     {
         if (DistanceToPlayer() < soundDistance) return true; //if player is too close, they can be heard
-        else if (DistanceToPlayer() < visualDistance //sight check
-            && Vector3.Angle(transform.forward, Player.instance.transform.position - transform.position) < fov) return true;
+        Vector3 dir = Player.instance.transform.position - transform.position;
+        if (DistanceToPlayer() < visualDistance && Vector3.Angle(transform.forward, dir) < fov) //sight check
+        {
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, dir, out hit, visualDistance, sightMask))
+            {
+                if (hit.transform == Player.instance.transform) return true;
+            }
+        }
         return false;
     }
 
