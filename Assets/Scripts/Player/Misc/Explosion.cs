@@ -21,6 +21,8 @@ public class Explosion : MonoBehaviour
         {
             Health health = collider.GetComponent<Health>();
             if (health != null) health.TakeDamage(damage);
+            Explodable explodable = collider.GetComponent<Explodable>();
+            if (explodable != null) explodable.exploded.Invoke();
         }
         explodeVisual.SetActive(true);
         StartCoroutine(EndExplosion());
