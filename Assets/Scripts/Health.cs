@@ -4,7 +4,7 @@ using UnityEngine.Events;
 public class Health : MonoBehaviour
 {
     public int maxHealth;
-    int health;
+    public int health;
 
     public UnityEvent hitEvent;
     public UnityEvent dieEvent;
