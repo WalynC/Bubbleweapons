@@ -9,10 +9,10 @@ public class Player : MonoBehaviour
     public float speed;
     public float jumpHeight;
     public float timeToApex = .5f;
-    float jumpSpeed;
-    float gravity;
+    public float jumpSpeed;
+    public float gravity;
 
-    Vector3 velocity = Vector3.zero;
+    public Vector3 velocity = Vector3.zero;
     InputAction moveAction;
     InputAction jumpAction;
     InputAction attackAction;
@@ -58,7 +58,8 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        if (attackAction.WasPressedThisFrame())
+        if (   (!activeTool.held && attackAction.WasPressedThisFrame())
+            || (activeTool.held && attackAction.IsPressed()))
         {
             activeTool?.Use();
         }
