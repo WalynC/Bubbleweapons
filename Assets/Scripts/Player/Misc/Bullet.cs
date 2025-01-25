@@ -8,6 +8,7 @@ public class Bullet : MonoBehaviour
     public float timeLimit = 5.0f;
     public Rigidbody rb;
     public float speed = 10.0f;
+    public int damage = 5;
 
     public void Init(Queue<GameObject> pool, Transform t, Vector3 forward)
     {
@@ -20,6 +21,8 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        Health health = collision.gameObject.GetComponent<Health>();
+        if (health != null) health.TakeDamage(damage);
         Return();
     }
 
