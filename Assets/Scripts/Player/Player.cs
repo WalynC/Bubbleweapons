@@ -58,11 +58,7 @@ public class Player : MonoBehaviour
             velocity.y = 0f;
         }
         characterController.Move(velocity * Time.deltaTime);
-    }
-
-    private void Update()
-    {
-        if (   (!activeTool.held && attackAction.WasPressedThisFrame())
+        if ((!activeTool.held && attackAction.WasPressedThisFrame())
             || (activeTool.held && attackAction.IsPressed()))
         {
             activeTool?.Use();
