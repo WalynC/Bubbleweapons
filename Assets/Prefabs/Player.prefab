@@ -281,6 +281,7 @@ MonoBehaviour:
   jumpHeight: 5
   timeToApex: 0.5
   activeTool: {fileID: 0}
+  health: {fileID: 3492077976911905248}
 --- !u!143 &408332374286183500
 CharacterController:
   m_ObjectHideFlags: 0
@@ -318,10 +319,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83e46695280706041b8eadbf1f60b497, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 25
   hitEvent:
     m_PersistentCalls:
       m_Calls: []
   dieEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6241231408740172645}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: Die
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

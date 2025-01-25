@@ -4,19 +4,24 @@ using UnityEngine.AI;
 public class BasicEnemy : MonoBehaviour
 {
     public NavMeshAgent agent;
-    public float attackRange = 1f;
     EnemyState state = EnemyState.Wander;
 
-    //player spotting variables
+    //attacking
+    public float attackRange = 1f;
+    public int damage = 5;
+    float timeUntilNextAttack;
+    public float attackDelay = 1f;
+
+    //player spotting
     public float visualDistance = 15f;
     public float fov = 90f;
     public float soundDistance = 3f;
 
-    //wander variables
+    //wander
     public float wanderRange = 5f;
     Vector3 home;
 
-    //follow variables
+    //follow
     public float followUpdateDelay = .5f;
     float timeUntilUpdate;
     public float followFailureTime = 3f;
@@ -45,7 +50,11 @@ public class BasicEnemy : MonoBehaviour
 
     void Attack()
     {
-
+        if (Time.time > timeUntilNextAttack)
+        {
+            Player.instance.health.TakeDamage(damage);
+            timeUntilNextAttack = Time.time + attackDelay;
+        }
     }
 
     bool CanSeePlayer()

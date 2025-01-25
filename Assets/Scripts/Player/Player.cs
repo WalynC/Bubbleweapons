@@ -19,6 +19,8 @@ public class Player : MonoBehaviour
 
     public Tool activeTool;
 
+    public Health health;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -60,5 +62,10 @@ public class Player : MonoBehaviour
         {
             activeTool?.Use();
         }
+    }
+
+    public void Die()
+    {
+        print("dead");
     }
 }
