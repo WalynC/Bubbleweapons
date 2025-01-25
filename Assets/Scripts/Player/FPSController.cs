@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 
 public class FPSController : MonoBehaviour
 {
+    public static FPSController instance;
     CharacterController characterController;
     public Camera cam;
     public float speed;
@@ -21,6 +22,7 @@ public class FPSController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        instance = this;
         characterController = GetComponent<CharacterController>();
         moveAction = InputSystem.actions.FindAction("Move");
         jumpAction = InputSystem.actions.FindAction("Jump");
