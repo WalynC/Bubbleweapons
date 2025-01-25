@@ -41,7 +41,7 @@ public class FPSController : MonoBehaviour
         {
             velocity.y += gravity * Time.deltaTime;
         }
-        else if (jumpAction.ReadValue<float>() > .5f)
+        else if (jumpAction.IsPressed())
         {
             velocity.y = jumpSpeed;
         }
