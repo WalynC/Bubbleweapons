@@ -9,7 +9,9 @@ public class Gun : Tool
     public override void Use()
     {
         GameObject obj = GetFromPool();
+        obj.SetActive(true);
         obj.transform.position = transform.position;
+        obj.GetComponent<Bullet>().Init(pool);
     }
 
     GameObject GetFromPool()
