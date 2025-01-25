@@ -21,6 +21,9 @@ public class Player : MonoBehaviour
 
     public Health health;
 
+    public int bubblePower;
+    public int maxBubblePower = 100;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -32,6 +35,7 @@ public class Player : MonoBehaviour
 
         jumpSpeed = 2 * jumpHeight / timeToApex;
         gravity = -2 * jumpHeight / Mathf.Pow(timeToApex, 2);
+        bubblePower = maxBubblePower;
     }
 
     // Update is called once per frame
@@ -63,6 +67,16 @@ public class Player : MonoBehaviour
         {
             activeTool?.Use();
         }
+    }
+
+    public bool SpendBubblePower(int cost)
+    {
+        if (cost <= bubblePower)
+        {
+            bubblePower -= cost;
+            return true;
+        }
+        return false;
     }
 
     public void Die()
