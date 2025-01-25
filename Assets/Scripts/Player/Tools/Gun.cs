@@ -4,6 +4,6 @@ public class Gun : Tool
 {
     public override void Use()
     {
-        throw new System.NotImplementedException();
+        print("BANG BANG BANG");
     }
 }

@@ -14,6 +14,9 @@ public class FPSController : MonoBehaviour
     Vector3 velocity = Vector3.zero;
     InputAction moveAction;
     InputAction jumpAction;
+    InputAction attackAction;
+
+    public Tool activeTool;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -21,6 +24,7 @@ public class FPSController : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         moveAction = InputSystem.actions.FindAction("Move");
         jumpAction = InputSystem.actions.FindAction("Jump");
+        attackAction = InputSystem.actions.FindAction("Attack");
 
         jumpSpeed = 2 * jumpHeight / timeToApex;
         gravity = -2 * jumpHeight / Mathf.Pow(timeToApex, 2);
@@ -46,5 +50,13 @@ public class FPSController : MonoBehaviour
             velocity.y = 0f;
         }
         characterController.Move(velocity * Time.deltaTime);
+    }
+
+    private void Update()
+    {
+        if (attackAction.WasPressedThisFrame())
+        {
+            activeTool?.Use();
+        }
     }
 }
