@@ -13,16 +13,23 @@ public class Player : MonoBehaviour
     public float gravity;
 
     public Vector3 velocity = Vector3.zero;
+
     InputAction moveAction;
     InputAction jumpAction;
     InputAction attackAction;
-
-    public Tool activeTool;
+    bool attackPending = false;
+    InputAction nextAction;
+    InputAction previousAction;
 
     public Health health;
 
     public int bubblePower;
     public int maxBubblePower = 100;
+
+    public Transform toolContainer;
+    Tool[] toolArray;
+    int currentTool = 0;
+    public Tool activeTool;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -32,10 +39,19 @@ public class Player : MonoBehaviour
         moveAction = InputSystem.actions.FindAction("Move");
         jumpAction = InputSystem.actions.FindAction("Jump");
         attackAction = InputSystem.actions.FindAction("Attack");
+        nextAction = InputSystem.actions.FindAction("Next");
+        previousAction = InputSystem.actions.FindAction("Previous");
 
         jumpSpeed = 2 * jumpHeight / timeToApex;
         gravity = -2 * jumpHeight / Mathf.Pow(timeToApex, 2);
         bubblePower = maxBubblePower;
+
+        toolArray = new Tool[toolContainer.childCount];
+        for (int i = 0; i < toolArray.Length; i++)
+        {
+            toolArray[i] = toolContainer.GetChild(i).GetComponent<Tool>();
+            if (toolArray[i] == activeTool) currentTool = i;
+        }
     }
 
     // Update is called once per frame
@@ -58,10 +74,34 @@ public class Player : MonoBehaviour
             velocity.y = 0f;
         }
         characterController.Move(velocity * Time.deltaTime);
+        if (attackPending)
+        {
+            activeTool.Use();
+        }
+        attackPending = false;
+    }
+    private void Update()
+    {
+        int change = 0;
+        if (nextAction.WasPressedThisFrame())
+        {
+            change++;
+        }
+        if (previousAction.WasPressedThisFrame())
+        {
+            change--;
+        }
+        if (change != 0)
+        {
+            currentTool += change;
+            currentTool += toolArray.Length;
+            currentTool %= toolArray.Length;
+            activeTool = toolArray[currentTool];
+        }
         if ((!activeTool.held && attackAction.WasPressedThisFrame())
             || (activeTool.held && attackAction.IsPressed()))
         {
-            activeTool?.Use();
+            attackPending = true;
         }
     }
 
