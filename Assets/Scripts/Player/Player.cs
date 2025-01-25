@@ -1,9 +1,9 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class FPSController : MonoBehaviour
+public class Player : MonoBehaviour
 {
-    public static FPSController instance;
+    public static Player instance;
     CharacterController characterController;
     public Camera cam;
     public float speed;

@@ -5,7 +5,7 @@ public class Gun : Tool
 {
     public GameObject bullet;
     public Queue<GameObject> pool = new Queue<GameObject>();
-    public FPSController player;
+    public Player player;
 
     public override void Use()
     {

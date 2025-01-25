@@ -40,7 +40,7 @@ public class BasicEnemy : MonoBehaviour
 
     float DistanceToPlayer()
     {
-        return Vector3.Distance(transform.position, FPSController.instance.transform.position);
+        return Vector3.Distance(transform.position, Player.instance.transform.position);
     }
 
     void Attack()
@@ -52,7 +52,7 @@ public class BasicEnemy : MonoBehaviour
     {
         if (DistanceToPlayer() < soundDistance) return true; //if player is too close, they can be heard
         else if (DistanceToPlayer() < visualDistance //sight check
-            && Vector3.Angle(transform.forward, FPSController.instance.transform.position - transform.position) < fov) return true;
+            && Vector3.Angle(transform.forward, Player.instance.transform.position - transform.position) < fov) return true;
         return false;
     }
 
@@ -82,7 +82,7 @@ public class BasicEnemy : MonoBehaviour
                 }
                 if (Time.time > timeUntilUpdate)
                 {
-                    agent.SetDestination(FPSController.instance.transform.position);
+                    agent.SetDestination(Player.instance.transform.position);
                     timeUntilUpdate = Time.time+followUpdateDelay;
                 }
                 if (CanSeePlayer())
