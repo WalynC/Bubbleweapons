@@ -1,11 +1,25 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class PauseUI : MonoBehaviour
 {
     public GameObject gameUI;
     public string mainMenuScene;
+    InputAction pauseAction;
 
+    void Start()
+    {
+        pauseAction = InputSystem.actions.FindAction("Pause");
+    }
+
+    void Update()
+    {
+        if (pauseAction.WasPressedThisFrame())
+        {
+            Unpause();
+        }
+    }
     public void MainMenu()
     {
         SceneManager.LoadScene(mainMenuScene);
