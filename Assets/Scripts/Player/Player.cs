@@ -30,6 +30,7 @@ public class Player : MonoBehaviour
     Tool[] toolArray;
     int currentTool = 0;
     public Tool activeTool;
+    public AudioSource toolAudio;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -82,6 +83,7 @@ public class Player : MonoBehaviour
         if (attackPending)
         {
             activeTool.Use();
+            if (!toolAudio.isPlaying) toolAudio.Play();
         }
         attackPending = false;
     }

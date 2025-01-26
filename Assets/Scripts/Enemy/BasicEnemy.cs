@@ -28,6 +28,8 @@ public class BasicEnemy : MonoBehaviour
     public float followFailureTime = 3f;
     float timeUntilFollowFail;
 
+    public AudioSource foundSound;
+
     enum EnemyState
     {
         Wander,
@@ -87,6 +89,7 @@ public class BasicEnemy : MonoBehaviour
                 {
                     timeUntilFollowFail = Time.time + followFailureTime;
                     state = EnemyState.Follow;
+                    foundSound.Play();
                 }
                 break;
             case EnemyState.Follow:
