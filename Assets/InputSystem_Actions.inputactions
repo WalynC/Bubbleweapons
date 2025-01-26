@@ -370,7 +370,7 @@
                 {
                     "name": "",
                     "id": "7e10331b-1989-4cb6-b4ba-9370ea31adb0",
-                    "path": "<Keyboard>/escape",
+                    "path": "<Keyboard>/p",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
