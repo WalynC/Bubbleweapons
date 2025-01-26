@@ -50,7 +50,11 @@ public class Player : MonoBehaviour
         for (int i = 0; i < toolArray.Length; i++)
         {
             toolArray[i] = toolContainer.GetChild(i).GetComponent<Tool>();
-            if (toolArray[i] == activeTool) currentTool = i;
+            if (toolArray[i] == activeTool)
+            {
+                activeTool.visual.SetActive(true);
+                currentTool = i;
+            }
         }
     }
 
@@ -98,7 +102,9 @@ public class Player : MonoBehaviour
             currentTool += change;
             currentTool += toolArray.Length;
             currentTool %= toolArray.Length;
+            activeTool.visual.SetActive(false);
             activeTool = toolArray[currentTool];
+            activeTool.visual.SetActive(true);
         }
         if ((!activeTool.held && attackAction.WasPressedThisFrame())
             || (activeTool.held && attackAction.IsPressed()))
