@@ -17,6 +17,7 @@ public class Bullet : MonoBehaviour
         rb.MovePosition(t.position);
         transform.forward = forward;
         rb.linearVelocity = transform.forward * speed;
+        rb.angularVelocity = Vector3.zero;
     }
 
     private void OnCollisionEnter(Collision collision)

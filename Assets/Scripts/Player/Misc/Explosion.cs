@@ -30,7 +30,7 @@ public class Explosion : MonoBehaviour
 
     IEnumerator EndExplosion()
     {
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(2f);
         explosionEndEvent.Invoke();
     }
 }

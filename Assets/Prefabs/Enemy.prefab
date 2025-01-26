@@ -168,7 +168,7 @@ MonoBehaviour:
   sightMask:
     serializedVersion: 2
     m_Bits: 65
-  wanderRange: 5
+  wanderRange: 75
   followUpdateDelay: 0.5
   followFailureTime: 3
 --- !u!195 &8598643891647864723
