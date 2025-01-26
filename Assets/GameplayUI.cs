@@ -10,6 +10,7 @@ public class GameplayUI : MonoBehaviour
     {
         pauseAction = InputSystem.actions.FindAction("Pause");
         Cursor.lockState = CursorLockMode.Locked;
+        Time.timeScale = 1f;
     }
 
     // Update is called once per frame
