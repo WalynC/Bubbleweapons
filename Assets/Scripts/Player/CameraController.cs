@@ -10,6 +10,7 @@ public class CameraController : MonoBehaviour
     void Start()
     {
         lookAction = InputSystem.actions.FindAction("Look");
+        horiRot = transform.eulerAngles.y;
     }
 
     // Update is called once per frame

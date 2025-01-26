@@ -130,6 +130,7 @@ public class Player : MonoBehaviour
 
     public void UnlockTool(Tool tool)
     {
+        if (tool.transform.parent == toolContainer) return;
         Tool[] newArr = new Tool[toolArray.Length+1];
         toolArray.CopyTo(newArr, 0);
         newArr[newArr.Length-1] = tool;
