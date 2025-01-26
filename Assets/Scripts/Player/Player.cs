@@ -57,6 +57,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (Cursor.lockState != CursorLockMode.Locked) return;
         Vector2 inputDir = moveAction.ReadValue<Vector2>();
         Vector3 right = cam.transform.TransformDirection(Vector3.right);
         Vector3 forward = Vector3.Cross(right, Vector3.up);
@@ -82,6 +83,7 @@ public class Player : MonoBehaviour
     }
     private void Update()
     {
+        if (Cursor.lockState != CursorLockMode.Locked) return;
         int change = 0;
         if (nextAction.WasPressedThisFrame())
         {

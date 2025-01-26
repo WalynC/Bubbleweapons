@@ -15,6 +15,7 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Cursor.lockState != CursorLockMode.Locked) return;
         Vector2 look = lookAction.ReadValue<Vector2>();
         horiRot += look.x;
         vertRot -= look.y;

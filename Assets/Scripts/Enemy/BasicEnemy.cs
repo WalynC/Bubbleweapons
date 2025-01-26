@@ -75,6 +75,7 @@ public class BasicEnemy : MonoBehaviour
 
     public void FixedUpdate()
     {
+        if (Cursor.lockState != CursorLockMode.Locked) return;
         switch (state)
         {
             case EnemyState.Wander:
