@@ -127,4 +127,19 @@ public class Player : MonoBehaviour
     {
         print("dead");
     }
+
+    public void UnlockTool(Tool tool)
+    {
+        Tool[] newArr = new Tool[toolArray.Length+1];
+        toolArray.CopyTo(newArr, 0);
+        newArr[newArr.Length-1] = tool;
+        toolArray = newArr;
+        currentTool = newArr.Length - 1;
+        activeTool.visual.SetActive(false);
+        activeTool = toolArray[currentTool];
+        activeTool.visual.SetActive(true);
+        activeTool.transform.parent = toolContainer;
+        activeTool.transform.localPosition = Vector3.zero;
+        activeTool.transform.localRotation = Quaternion.identity;
+    }
 }
