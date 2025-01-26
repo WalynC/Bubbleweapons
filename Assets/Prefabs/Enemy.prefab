@@ -163,9 +163,9 @@ MonoBehaviour:
   attackRange: 2
   damage: 5
   attackDelay: 1
-  visualDistance: 15
+  visualDistance: 100
   fov: 90
-  soundDistance: 3
+  soundDistance: 10
   sightMask:
     serializedVersion: 2
     m_Bits: 65
@@ -183,7 +183,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5000001
-  m_Speed: 3.5
+  m_Speed: 10
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
